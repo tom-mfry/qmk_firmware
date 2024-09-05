@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 100
 
 #define EE_HANDS
-#define COMBO_COUNT 5
+#define COMBO_COUNT 10
 
 // Pick good defaults for enabling homerow modifiers
 #define TAPPING_TERM 300

@@ -6,7 +6,10 @@ const uint16_t PROGMEM bootLoaderCombo1[] = {KC_Q, KC_E, KC_T, COMBO_END};
 const uint16_t PROGMEM bootLoaderCombo2[] = {KC_Y, KC_I, KC_P, COMBO_END};
 const uint16_t PROGMEM enterCombo[] = {KC_BSPC, KC_SPC, COMBO_END};
 const uint16_t PROGMEM tabCombo[] = {KC_BSPC, KC_T, COMBO_END};
-const uint16_t PROGMEM mouseLayer[] = {KC_ESC, KC_CAPS, COMBO_END};
+const uint16_t PROGMEM navLayer[] = {KC_BSPC, KC_S, COMBO_END};
+const uint16_t PROGMEM symLayer[] = {KC_BSPC, KC_D, COMBO_END};
+const uint16_t PROGMEM numLayer[] = {KC_BSPC, KC_F, COMBO_END};
+const uint16_t PROGMEM mouseLayer[] = {KC_BSPC, KC_G, COMBO_END};
 
 enum layers
 {
@@ -41,6 +44,9 @@ combo_t key_combos[] = {
     COMBO(bootLoaderCombo2, QK_BOOTLOADER),
     COMBO(enterCombo, KC_ENT),
     COMBO(tabCombo, KC_TAB),
+    COMBO(navLayer, TO(_NAV)),
+    COMBO(symLayer, TO(_SYM)),
+    COMBO(numLayer, TO(_NUM)),
     COMBO(mouseLayer, TO(_MOUSE)),
 };
 
@@ -91,9 +97,9 @@ CHORDING
 * ┌────────┬────────┬────────┬────────┬────────┐       ┌────────┬────────┬────────┬────────┬────────┐
 * │  BASE  │   1    │   2    │   3    │ ENTER  │       │        │        │        │        │        │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
-* │        │   4    │   5    │   6    │        │       │        │        │        │        │        │
+* │        │   4    │   5    │   6    │   0    │       │        │        │        │        │        │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
-* │        │   7    │   8    │   9    │   0    │       │        │        │        │        │        │
+* │        │   7    │   8    │   9    │        │       │        │        │        │        │        │
 * └────────┴────────┴────────┼────────┼────────┤       ├────────┼────────┤────────┴────────┴────────┘
 *                            │        │ BKSPC  │       │  BASE  │ MOUSE  │
 *                            └────────┴────────┘       └────────┴────────┘
@@ -102,9 +108,9 @@ CHORDING
 * ┌────────┬────────┬────────┬────────┬────────┐       ┌────────┬────────┬────────┬────────┬────────┐
 * │        │        │SCRL_UP │        │        │       │        │        │ MSE_UP │        │        │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
-* │ LSHFT  │RGT_CLCK│MDL_CLCK│LFT_CLCK│        │       │        │MSE_LFT │MSE_DWN │MSE_RGT │        │
+* │ LSHFT  │RGT_CLCK│SCRL_DWN│LFT_CLCK│        │       │        │MSE_LFT │MSE_DWN │MSE_RGT │        │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
-* │        │        │SCRL_DWN│        │        │       │        │        │        │        │        │
+* │        │        │MDL_CLCK│        │        │       │        │        │        │        │        │
 * └────────┴────────┴────────┼────────┼────────┤       ├────────┼────────┤────────┴────────┴────────┘
 *                            │  LGUI  │  BASE  │       │  BASE  │        │
 *                            └────────┴────────┘       └────────┴────────┘
@@ -134,14 +140,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         [_NUM] = LAYOUT_split_3x5_2(
           TO(_BASE), KC_1, KC_2, KC_3, KC_ENT, xx, xx, xx, xx, xx,
-          xx, KC_4, KC_5, KC_6, xx, xx, xx, xx, xx, xx,
-          xx, KC_7, KC_8, KC_9, KC_0, xx, xx, xx, xx, xx,
+          xx, KC_4, KC_5, KC_6, KC_0, xx, xx, xx, xx, xx,
+          xx, KC_7, KC_8, KC_9, xx, xx, xx, xx, xx, xx,
           xx, KC_BSPC, TO(_BASE), TO(_MOUSE)),
 
         [_MOUSE] = LAYOUT_split_3x5_2(
           xx, xx, MS_WHLD, xx, xx,                       xx, xx, QK_MOUSE_CURSOR_UP, xx, xx,
-          xx, MS_BTN2, MS_BTN3, MS_BTN1, xx,    xx, QK_MOUSE_CURSOR_LEFT, QK_MOUSE_CURSOR_DOWN, QK_MOUSE_CURSOR_RIGHT, xx,
-          xx, xx, MS_WHLU, xx, xx,                     xx, xx, xx, xx, xx,
+          xx, MS_BTN2, MS_WHLU, MS_BTN1, xx,    xx, QK_MOUSE_CURSOR_LEFT, QK_MOUSE_CURSOR_DOWN, QK_MOUSE_CURSOR_RIGHT, xx,
+          xx, xx, MS_BTN3, xx, xx,                     xx, xx, xx, xx, xx,
           xx, TO(_BASE),                                     TO(_BASE), xx),
 };
 
