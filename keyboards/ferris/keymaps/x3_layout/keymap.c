@@ -4,7 +4,7 @@
 
 const uint16_t PROGMEM bootLoaderCombo1[] = {KC_Q, KC_E, KC_T, COMBO_END};
 const uint16_t PROGMEM bootLoaderCombo2[] = {KC_Y, KC_I, KC_P, COMBO_END};
-const uint16_t PROGMEM enterCombo[] = {KC_BSPC, KC_SPC, COMBO_END};
+const uint16_t PROGMEM spotlight[] = {KC_BSPC, KC_SPC, COMBO_END};
 const uint16_t PROGMEM tabCombo[] = {KC_BSPC, KC_T, COMBO_END};
 const uint16_t PROGMEM navLayer[] = {KC_BSPC, KC_S, COMBO_END};
 const uint16_t PROGMEM symLayer[] = {KC_BSPC, KC_D, COMBO_END};
@@ -42,7 +42,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 combo_t key_combos[] = {
     COMBO(bootLoaderCombo1, QK_BOOTLOADER),
     COMBO(bootLoaderCombo2, QK_BOOTLOADER),
-    COMBO(enterCombo, KC_ENT),
+    COMBO(spotlight, LGUI(KC_SPC)),
     COMBO(tabCombo, KC_TAB),
     COMBO(navLayer, TO(_NAV)),
     COMBO(symLayer, TO(_SYM)),
@@ -88,7 +88,7 @@ CHORDING
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
 * │   !    │   +    │   -    │   =    │   #    │       │   :    │   [    │    ]   │   ?    │   |    │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
-* │   ^    │    /   │   *    │    \   │   `    │       │   ~    │   {    │    }   │   @    │        │
+* │   *    │    /   │   _    │    \   │   `    │       │   ~    │   {    │    }   │   @    │   ^    │
 * └────────┴────────┴────────┼────────┼────────┤       ├────────┼────────┤────────┴────────┴────────┘
 *                            │  NUM   │ BKSPC  │       │  BASE  │  NAV   │
 *                            └────────┴────────┘       └────────┴────────┘
@@ -135,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         [_SYM] = LAYOUT_split_3x5_2(
           KC_DOT, KC_DQUO, KC_LT, KC_GT, KC_QUOT, DOUBLE_COLON, KC_LPRN, KC_RPRN, KC_PERC, KC_AMPR, 
           KC_EXLM, KC_PLUS, KC_MINS, KC_EQL, KC_HASH, KC_COLN, KC_LBRC, KC_RBRC, KC_QUES, KC_PIPE, 
-          KC_CIRC, KC_SLSH, KC_ASTR, KC_BSLS, KC_GRV, KC_TILD, KC_LCBR, KC_RCBR, KC_AT, KC_NO,
+          KC_ASTR, KC_SLSH, KC_UNDS, KC_BSLS, KC_GRV, KC_TILD, KC_LCBR, KC_RCBR, KC_AT, KC_CIRC,
           TO(_NUM), KC_BSPC, TO(_BASE), TO(_NAV)),
 
         [_NUM] = LAYOUT_split_3x5_2(
