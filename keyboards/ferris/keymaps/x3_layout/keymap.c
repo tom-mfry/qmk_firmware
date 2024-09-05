@@ -44,23 +44,32 @@ combo_t key_combos[] = {
     COMBO(mouseLayer, TO(_MOUSE)),
 };
 
-/*
+/* NOTES
+
+CHORDING
+  BACKSPC + S: Toggle _NAV Layer
+  BACKSPC + D: Toggle _SYM Layer
+  BACKSPC + F: Toggle _NUM Layer
+  BACKSPC + G: Toggle _MOUSE Layer
+  SPC + W: Caps word
+
+
 *  BASE LAYER
-* ┌────────┬────────┬────────┬────────┬────────┐       ┌────────┬────────┬────────┬────────┬────────┐
-* │   Q    │   W    │   E    │   R    │   T    │       │   Y    │   U    │   I    │   O    │   P    │
-* ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
-* │   A    │   S    │   D    │   F    │   G    │       │   H    │   J    │   K    │   L    │   ;    │
-* ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
-* │   Z    │   X    │   C    │   V    │   B    │       │   N    │   M    │   ,    │   .    │   /    │
-* └────────┴────────┴────────┼────────┼────────┤       ├────────┼────────┤────────┴────────┴────────┘
-*                            │  LSFT  │  BKSPC │       │ SPACE  │  NAV   │
-*                            └────────┴────────┘       └────────┴────────┘
+* ┌────────┬────────┬────────┬────────┬────────┐       ┌────----────┬────────┬────────┬────────┬────────┐
+* │   Q    │   W    │   E    │   R    │   T    │       │   Y        │   U    │   I    │   O    │   P    │
+* ├────────┼────────┼────────┼────────┼────────┤       ├──────----──┼────────┼────────┼────────┼────────┤
+* │   A    │   S    │   D    │   F    │   G    │       │   H        │   J    │   K    │   L    │   ;    │
+* ├────────┼────────┼────────┼────────┼────────┤       ├─────----───┼────────┼────────┼────────┼────────┤
+* │   Z    │   X    │   C    │   V    │   B    │       │   N        │   M    │   ,    │   .    │   /    │
+* └────────┴────────┴────────┼────────┼────────┤       ├──────----──┼────────┤────────┴────────┴────────┘
+*                            │  SYMB  │  BKSPC │       │ SPACE/CAG  │  NAV   │
+*                            └────────┴────────┘       └─────----───┴────────┘
 *
 *  NAV LAYER
 * ┌────────┬────────┬────────┬────────┬────────┐       ┌────────┬────────┬────────┬────────┬────────┐
-* │  ESC   │  TAB   │        │  DEL   │ BKSPC  │       │  END   │ PG_DWN │ PG_UP  │  HOME  │  CAPS  │
+* │  ESC   │        │  CAG   │  DEL   │ BKSPC  │       │  END   │ PG_DWN │ PG_UP  │  HOME  │  CAPS  │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
-* │ LSHFT  │ LCTRL  │  LALT  │  LGUI  │        │       │   ←    │   ↓    │   ↑    │   →    │        │
+* │ LSHFT  │ LCTRL  │  LALT  │  LGUI  │  TAB   │       │   ←    │   ↓    │   ↑    │   →    │  CAPSW │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
 * │        │  CUT   │  COPY  │ PASTE  │  FIND  │       │   <    │   -    │   +    │   >    │        │
 * └────────┴────────┴────────┼────────┼────────┤       ├────────┼────────┤────────┴────────┴────────┘
@@ -80,13 +89,13 @@ combo_t key_combos[] = {
 *
 *  NUMBER LAYER
 * ┌────────┬────────┬────────┬────────┬────────┐       ┌────────┬────────┬────────┬────────┬────────┐
-* │        │   1    │   2    │   3    │ ENTER  │       │        │        │        │        │        │
+* │  BASE  │   1    │   2    │   3    │ ENTER  │       │        │        │        │        │        │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
 * │        │   4    │   5    │   6    │        │       │        │        │        │        │        │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
 * │        │   7    │   8    │   9    │   0    │       │        │        │        │        │        │
 * └────────┴────────┴────────┼────────┼────────┤       ├────────┼────────┤────────┴────────┴────────┘
-*                            │ SPACE  │  BKSPC │       │  BASE  │ MOUSE  │
+*                            │        │ BKSPC  │       │  BASE  │ MOUSE  │
 *                            └────────┴────────┘       └────────┴────────┘
 *
 * MOUSE LAYER
@@ -109,12 +118,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
           KC_A,    KC_S,    KC_D,    KC_F,    KC_G,            KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
           KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,            KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
-                                  KC_LSFT, KC_BSPC,            KC_SPC, TT(_NAV)),
+                                  TT(_SYM), KC_BSPC,            KC_SPC, TT(_NAV)),
 
         [_NAV] = LAYOUT_split_3x5_2(
-          KC_ESC, KC_TAB, xx, KC_DEL, KC_BSPC, KC_END, KC_PGDN, KC_PGUP, KC_HOME, KC_CAPS,
-          OSM(MOD_LSFT), OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LGUI), OSM(MOD_MEH), KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, xx,
-          xx, LGUI(KC_X), LGUI(KC_C), LGUI(KC_V), LGUI(KC_F), KC_LT, KC_MINS, KC_PLUS, KC_GT, xx,
+          KC_ESC, xx, OSM(MOD_LCTL|MOD_LALT|MOD_LGUI), KC_DEL, KC_BSPC, KC_END, KC_PGDN, KC_PGUP, KC_HOME, KC_CAPS,
+          OSM(MOD_LSFT), OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LGUI), KC_TAB, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, QK_CAPS_WORD_TOGGLE,
+          xx, LGUI(KC_X), LGUI(KC_C), LGUI(KC_V), LGUI(KC_F), KC_COMM, KC_MINS, KC_EQL, KC_DOT, xx,
           TO(_SYM), KC_ENT, TO(_BASE), xx),
 
         [_SYM] = LAYOUT_split_3x5_2(
@@ -124,15 +133,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           TO(_NUM), KC_BSPC, TO(_BASE), TO(_NAV)),
 
         [_NUM] = LAYOUT_split_3x5_2(
-          xx, KC_1, KC_2, KC_3, KC_ENT, xx, xx, xx, xx, xx,
+          TO(_BASE), KC_1, KC_2, KC_3, KC_ENT, xx, xx, xx, xx, xx,
           xx, KC_4, KC_5, KC_6, xx, xx, xx, xx, xx, xx,
           xx, KC_7, KC_8, KC_9, KC_0, xx, xx, xx, xx, xx,
-          KC_SPC, KC_BSPC, TO(_BASE), TO(_MOUSE)),
+          xx, KC_BSPC, TO(_BASE), TO(_MOUSE)),
 
         [_MOUSE] = LAYOUT_split_3x5_2(
-          xx, xx, KC_MS_WH_UP, xx, xx,                       xx, xx, KC_MS_UP, xx, xx,
-          xx, xx, KC_MS_BTN2, KC_MS_BTN3, KC_MS_BTN1, xx,    xx, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT,
-          xx, xx, KC_MS_WH_DOWN, xx, xx,                     xx, xx, xx, xx, xx,
+          xx, xx, MS_WHLD, xx, xx,                       xx, xx, QK_MOUSE_CURSOR_UP, xx, xx,
+          xx, MS_BTN2, MS_BTN3, MS_BTN1, xx,    xx, QK_MOUSE_CURSOR_LEFT, QK_MOUSE_CURSOR_DOWN, QK_MOUSE_CURSOR_RIGHT, xx,
+          xx, xx, MS_WHLU, xx, xx,                     xx, xx, xx, xx, xx,
           xx, TO(_BASE),                                     TO(_BASE), xx),
 };
 

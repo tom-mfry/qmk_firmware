@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define COMBO_COUNT 5
 
 // Pick good defaults for enabling homerow modifiers
-#define TAPPING_TERM 180
+#define TAPPING_TERM 300
 #define PERMISSIVE_HOLD
 #define QUICK_TAP_TERM 0
 
