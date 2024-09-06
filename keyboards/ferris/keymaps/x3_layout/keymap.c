@@ -143,24 +143,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           KC_ESC, OSM(MOD_LCTL|MOD_LSFT|MOD_LGUI), OSM(MOD_LCTL|MOD_LALT|MOD_LGUI), KC_DEL, KC_BSPC, KC_END, KC_PGDN, KC_PGUP, KC_HOME, KC_CAPS,
           OSM(MOD_LSFT), OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LGUI), KC_TAB, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, QK_CAPS_WORD_TOGGLE,
           xx, LGUI(KC_X), LGUI(KC_C), LGUI(KC_V), LGUI(KC_F), KC_COMM, KC_MINS, KC_EQL, KC_DOT, xx,
-          TO(_SYM), KC_ENT, TO(_BASE), xx),
+          xx, KC_ENT, TO(_BASE), xx),
 
         [_SYM] = LAYOUT_split_3x5_2(
           KC_DOT, KC_DQUO, KC_LT, KC_GT, KC_QUOT, DOUBLE_COLON, KC_LPRN, KC_RPRN, KC_PERC, KC_AMPR, 
           KC_EXLM, KC_PLUS, KC_MINS, KC_EQL, KC_HASH, KC_COLN, KC_LBRC, KC_RBRC, KC_QUES, KC_PIPE, 
           KC_ASTR, KC_SLSH, KC_UNDS, KC_BSLS, KC_GRV, KC_TILD, KC_LCBR, KC_RCBR, KC_AT, KC_CIRC,
-          TO(_NUM), KC_BSPC, TO(_BASE), TO(_NAV)),
+          xx, KC_BSPC, TO(_BASE), xx),
 
         [_NUM] = LAYOUT_split_3x5_2(
           TO(_BASE), KC_1, KC_2, KC_3, KC_ENT, xx, xx, xx, xx, xx,
           xx, KC_4, KC_5, KC_6, KC_0, xx, xx, xx, xx, xx,
           xx, KC_7, KC_8, KC_9, xx, xx, xx, xx, xx, xx,
-          xx, KC_BSPC, TO(_BASE), TO(_MOUSE)),
+          xx, KC_BSPC, TO(_BASE), xx)),
 
         [_MOUSE] = LAYOUT_split_3x5_2(
           xx, xx, MS_WHLD, xx, PWD,                       xx, xx, QK_MOUSE_CURSOR_UP, xx, xx,
           MOD_LSFT, MS_BTN2, MS_WHLU, MS_BTN1, xx,    xx, QK_MOUSE_CURSOR_LEFT, QK_MOUSE_CURSOR_DOWN, QK_MOUSE_CURSOR_RIGHT, xx,
           xx, xx, MS_BTN3, xx, xx,                     xx, xx, xx, xx, xx,
-          MOD_GUI, TO(_BASE),                                     TO(_BASE), xx),
+          MOD_LGUI, TO(_BASE),                                     TO(_BASE), xx),
 };
 
