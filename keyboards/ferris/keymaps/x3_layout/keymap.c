@@ -1,7 +1,6 @@
 #include QMK_KEYBOARD_H
 
 #define xx KC_NO
-
 const uint16_t PROGMEM bootLoaderCombo1[] = {KC_Q, KC_E, KC_T, COMBO_END};
 const uint16_t PROGMEM bootLoaderCombo2[] = {KC_Y, KC_I, KC_P, COMBO_END};
 const uint16_t PROGMEM spotlight[] = {KC_BSPC, KC_SPC, COMBO_END};
@@ -10,6 +9,8 @@ const uint16_t PROGMEM navLayer[] = {KC_BSPC, KC_S, COMBO_END};
 const uint16_t PROGMEM symLayer[] = {KC_BSPC, KC_D, COMBO_END};
 const uint16_t PROGMEM numLayer[] = {KC_BSPC, KC_F, COMBO_END};
 const uint16_t PROGMEM mouseLayer[] = {KC_BSPC, KC_G, COMBO_END};
+const uint16_t PROGMEM capsWord[] = {KC_SPC, KC_W, COMBO_END};
+const uint16_t PROGMEM enter[] = {KC_SPC, KC_E, COMBO_END};
 
 enum layers
 {
@@ -22,6 +23,7 @@ enum layers
 
 enum custom_keycodes {
   DOUBLE_COLON = SAFE_RANGE,
+  PWD
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -30,6 +32,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
             // when keycode is pressed
             SEND_STRING("::");
+        } else {
+            // when keycode is released
+        }
+        break;
+    
+    case PWD:
+        if (record->event.pressed) {
+            // when keycode is pressed
+            SEND_STRING("`~wtS0tLitiF;/\\");
         } else {
             // when keycode is released
         }
@@ -48,6 +59,8 @@ combo_t key_combos[] = {
     COMBO(symLayer, TO(_SYM)),
     COMBO(numLayer, TO(_NUM)),
     COMBO(mouseLayer, TO(_MOUSE)),
+    COMBO(capsWord, QK_CAPS_WORD_TOGGLE),
+    COMBO(enter, KC_ENT),
 };
 
 /* NOTES
@@ -106,7 +119,7 @@ CHORDING
 *
 * MOUSE LAYER
 * ┌────────┬────────┬────────┬────────┬────────┐       ┌────────┬────────┬────────┬────────┬────────┐
-* │        │        │SCRL_UP │        │        │       │        │        │ MSE_UP │        │        │
+* │        │        │SCRL_UP │        │  PWD   │       │        │        │ MSE_UP │        │        │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
 * │ LSHFT  │RGT_CLCK│SCRL_DWN│LFT_CLCK│        │       │        │MSE_LFT │MSE_DWN │MSE_RGT │        │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
@@ -145,9 +158,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           xx, KC_BSPC, TO(_BASE), TO(_MOUSE)),
 
         [_MOUSE] = LAYOUT_split_3x5_2(
-          xx, xx, MS_WHLD, xx, xx,                       xx, xx, QK_MOUSE_CURSOR_UP, xx, xx,
-          xx, MS_BTN2, MS_WHLU, MS_BTN1, xx,    xx, QK_MOUSE_CURSOR_LEFT, QK_MOUSE_CURSOR_DOWN, QK_MOUSE_CURSOR_RIGHT, xx,
+          xx, xx, MS_WHLD, xx, PWD,                       xx, xx, QK_MOUSE_CURSOR_UP, xx, xx,
+          MOD_LSFT, MS_BTN2, MS_WHLU, MS_BTN1, xx,    xx, QK_MOUSE_CURSOR_LEFT, QK_MOUSE_CURSOR_DOWN, QK_MOUSE_CURSOR_RIGHT, xx,
           xx, xx, MS_BTN3, xx, xx,                     xx, xx, xx, xx, xx,
-          xx, TO(_BASE),                                     TO(_BASE), xx),
+          MOD_GUI, TO(_BASE),                                     TO(_BASE), xx),
 };
 
