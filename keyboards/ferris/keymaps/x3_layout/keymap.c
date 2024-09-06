@@ -86,7 +86,7 @@ CHORDING
 *
 *  NAV LAYER
 * ┌────────┬────────┬────────┬────────┬────────┐       ┌────────┬────────┬────────┬────────┬────────┐
-* │  ESC   │        │  CAG   │  DEL   │ BKSPC  │       │  END   │ PG_DWN │ PG_UP  │  HOME  │  CAPS  │
+* │  ESC   │  CSG   │  CAG   │  DEL   │ BKSPC  │       │  END   │ PG_DWN │ PG_UP  │  HOME  │  CAPS  │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
 * │ LSHFT  │ LCTRL  │  LALT  │  LGUI  │  TAB   │       │   ←    │   ↓    │   ↑    │   →    │  CAPSW │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
@@ -140,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                   TT(_SYM), KC_BSPC,            KC_SPC, TT(_NAV)),
 
         [_NAV] = LAYOUT_split_3x5_2(
-          KC_ESC, xx, OSM(MOD_LCTL|MOD_LALT|MOD_LGUI), KC_DEL, KC_BSPC, KC_END, KC_PGDN, KC_PGUP, KC_HOME, KC_CAPS,
+          KC_ESC, OSM(MOD_LCTL|MOD_LSFT|MOD_LGUI), OSM(MOD_LCTL|MOD_LALT|MOD_LGUI), KC_DEL, KC_BSPC, KC_END, KC_PGDN, KC_PGUP, KC_HOME, KC_CAPS,
           OSM(MOD_LSFT), OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LGUI), KC_TAB, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, QK_CAPS_WORD_TOGGLE,
           xx, LGUI(KC_X), LGUI(KC_C), LGUI(KC_V), LGUI(KC_F), KC_COMM, KC_MINS, KC_EQL, KC_DOT, xx,
           TO(_SYM), KC_ENT, TO(_BASE), xx),
