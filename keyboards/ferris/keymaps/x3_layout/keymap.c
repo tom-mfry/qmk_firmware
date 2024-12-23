@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "key.h"
 
 #define xx KC_NO
 const uint16_t PROGMEM bootLoaderCombo1[] = {KC_Q, KC_E, KC_T, COMBO_END};
@@ -9,6 +10,8 @@ const uint16_t PROGMEM navLayer[] = {KC_BSPC, KC_S, COMBO_END};
 const uint16_t PROGMEM symLayer[] = {KC_BSPC, KC_D, COMBO_END};
 const uint16_t PROGMEM numLayer[] = {KC_BSPC, KC_F, COMBO_END};
 const uint16_t PROGMEM mouseLayer[] = {KC_BSPC, KC_G, COMBO_END};
+const uint16_t PROGMEM copyChord[] = {KC_BSPC, KC_C, COMBO_END};
+const uint16_t PROGMEM pasteChord[] = {KC_BSPC, KC_V, COMBO_END};
 const uint16_t PROGMEM capsWord[] = {KC_SPC, KC_W, COMBO_END};
 const uint16_t PROGMEM enter[] = {KC_SPC, KC_E, COMBO_END};
 
@@ -36,11 +39,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // when keycode is released
         }
         break;
-    
+
     case PWD:
         if (record->event.pressed) {
             // when keycode is pressed
-            SEND_STRING("`~wtS0tLitiF;/\\");
+            SEND_STRING(KEY);
         } else {
             // when keycode is released
         }
@@ -54,6 +57,8 @@ combo_t key_combos[] = {
     COMBO(bootLoaderCombo1, QK_BOOTLOADER),
     COMBO(bootLoaderCombo2, QK_BOOTLOADER),
     COMBO(spotlight, LGUI(KC_SPC)),
+    COMBO(copyChord, LGUI(KC_C)),
+    COMBO(pasteChord, LGUI(KC_V)),
     COMBO(tabCombo, KC_TAB),
     COMBO(navLayer, TO(_NAV)),
     COMBO(symLayer, TO(_SYM)),
@@ -71,50 +76,52 @@ CHORDING
   BACKSPC + F: Toggle _NUM Layer
   BACKSPC + G: Toggle _MOUSE Layer
   SPC + W: Caps word
+  SPC + E: Enter
+  SPC + BKSPC: Spotlight
 
 
 *  BASE LAYER
 * ┌────────┬────────┬────────┬────────┬────────┐       ┌────----────┬────────┬────────┬────────┬────────┐
 * │   Q    │   W    │   E    │   R    │   T    │       │   Y        │   U    │   I    │   O    │   P    │
 * ├────────┼────────┼────────┼────────┼────────┤       ├──────----──┼────────┼────────┼────────┼────────┤
-* │   A    │   S    │   D    │   F    │   G    │       │   H        │   J    │   K    │   L    │   ;    │
+* │   A    │   S    │   D    │   F    │   G    │       │   H        │   J    │   K    │   L    │  LGUI  │
 * ├────────┼────────┼────────┼────────┼────────┤       ├─────----───┼────────┼────────┼────────┼────────┤
-* │   Z    │   X    │   C    │   V    │   B    │       │   N        │   M    │   ,    │   .    │   /    │
+* │   Z    │   X    │   C    │   V    │   B    │       │   N        │   M    │   ,    │   .    │  NUM   │
 * └────────┴────────┴────────┼────────┼────────┤       ├──────----──┼────────┤────────┴────────┴────────┘
-*                            │  SYMB  │  BKSPC │       │ SPACE/CAG  │  NAV   │
+*                            │  SYMB  │  BKSPC │       │   SPACE    │  NAV   │
 *                            └────────┴────────┘       └─────----───┴────────┘
 *
 *  NAV LAYER
 * ┌────────┬────────┬────────┬────────┬────────┐       ┌────────┬────────┬────────┬────────┬────────┐
 * │  ESC   │  CSG   │  CAG   │  DEL   │ BKSPC  │       │  END   │ PG_DWN │ PG_UP  │  HOME  │  CAPS  │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
-* │ LSHFT  │ LCTRL  │  LALT  │  LGUI  │  TAB   │       │   ←    │   ↓    │   ↑    │   →    │  CAPSW │
+* │  LSFT  │  LCTL  │  LALT  │  LGUI  │  TAB   │       │   ←    │   ↓    │   ↑    │   →    │ CAPSW  │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
 * │        │  CUT   │  COPY  │ PASTE  │  FIND  │       │   <    │   -    │   +    │   >    │        │
 * └────────┴────────┴────────┼────────┼────────┤       ├────────┼────────┤────────┴────────┴────────┘
-*                            │  SYMB  │ ENTER  │       │  BASE  │        │
+*                            │        │ ENTER  │       │  BASE  │        │
 *                            └────────┴────────┘       └────────┴────────┘
 *
 *  SYMBOL LAYER
 * ┌────────┬────────┬────────┬────────┬────────┐       ┌────────┬────────┬────────┬────────┬────────┐
-* │   .    │   "    │   <    │   >    │   '    │       │   ::   │   (    │    )   │   %    │   &    │
+* │   .    │   "    │   <    │   >    │   '    │       │   ;    │   (    │    )   │   %    │   &    │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
 * │   !    │   +    │   -    │   =    │   #    │       │   :    │   [    │    ]   │   ?    │   |    │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
 * │   *    │    /   │   _    │    \   │   `    │       │   ~    │   {    │    }   │   @    │   ^    │
 * └────────┴────────┴────────┼────────┼────────┤       ├────────┼────────┤────────┴────────┴────────┘
-*                            │  NUM   │ BKSPC  │       │  BASE  │  NAV   │
+*                            │        │ BKSPC  │       │  BASE  │        │
 *                            └────────┴────────┘       └────────┴────────┘
 *
 *  NUMBER LAYER
 * ┌────────┬────────┬────────┬────────┬────────┐       ┌────────┬────────┬────────┬────────┬────────┐
 * │  BASE  │   1    │   2    │   3    │ ENTER  │       │        │        │        │        │        │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
-* │        │   4    │   5    │   6    │   0    │       │        │        │        │        │        │
+* │TMUX-LDR│   4    │   5    │   6    │   0    │       │        │  LGUI  │  LALT  │  LCTL  │  LSFT  │
 * ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
 * │        │   7    │   8    │   9    │        │       │        │        │        │        │        │
 * └────────┴────────┴────────┼────────┼────────┤       ├────────┼────────┤────────┴────────┴────────┘
-*                            │        │ BKSPC  │       │  BASE  │ MOUSE  │
+*                            │        │ BKSPC  │       │  BASE  │        │
 *                            └────────┴────────┘       └────────┴────────┘
 *
 * MOUSE LAYER
@@ -135,9 +142,9 @@ CHORDING
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         [_BASE] = LAYOUT_split_3x5_2(
           KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
-          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,            KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
-          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,            KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
-                                  TT(_SYM), KC_BSPC,            KC_SPC, TT(_NAV)),
+          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,            KC_H,    KC_J,    KC_K,    KC_L,    KC_LGUI,
+          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,            KC_N,    KC_M,    KC_COMM, KC_DOT,  MO(_NUM),
+                                  MO(_SYM), KC_BSPC,            KC_SPC, MO(_NAV)),
 
         [_NAV] = LAYOUT_split_3x5_2(
           KC_ESC, OSM(MOD_LCTL|MOD_LSFT|MOD_LGUI), OSM(MOD_LCTL|MOD_LALT|MOD_LGUI), KC_DEL, KC_BSPC, KC_END, KC_PGDN, KC_PGUP, KC_HOME, KC_CAPS,
@@ -146,16 +153,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           xx, KC_ENT, TO(_BASE), xx),
 
         [_SYM] = LAYOUT_split_3x5_2(
-          KC_DOT, KC_DQUO, KC_LT, KC_GT, KC_QUOT, DOUBLE_COLON, KC_LPRN, KC_RPRN, KC_PERC, KC_AMPR, 
-          KC_EXLM, KC_PLUS, KC_MINS, KC_EQL, KC_HASH, KC_COLN, KC_LBRC, KC_RBRC, KC_QUES, KC_PIPE, 
+          KC_DOT, KC_DQUO, KC_LT, KC_GT, KC_QUOT, KC_SCLN, KC_LPRN, KC_RPRN, KC_PERC, KC_AMPR,
+          KC_EXLM, KC_PLUS, KC_MINS, KC_EQL, KC_HASH, KC_COLN, KC_LBRC, KC_RBRC, KC_QUES, KC_PIPE,
           KC_ASTR, KC_SLSH, KC_UNDS, KC_BSLS, KC_GRV, KC_TILD, KC_LCBR, KC_RCBR, KC_AT, KC_CIRC,
           xx, KC_BSPC, TO(_BASE), xx),
 
         [_NUM] = LAYOUT_split_3x5_2(
-          TO(_BASE), KC_1, KC_2, KC_3, KC_ENT, xx, xx, xx, xx, xx,
-          xx, KC_4, KC_5, KC_6, KC_0, xx, xx, xx, xx, xx,
+          KC_0, KC_1, KC_2, KC_3, KC_ENT, xx, xx, xx, xx, xx,
+          LCTL(KC_S), KC_4, KC_5, KC_6, KC_0, xx, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT,
           xx, KC_7, KC_8, KC_9, xx, xx, xx, xx, xx, xx,
-          xx, KC_BSPC, TO(_BASE), xx)),
+          xx, KC_BSPC, TO(_BASE), xx),
 
         [_MOUSE] = LAYOUT_split_3x5_2(
           xx, xx, MS_WHLD, xx, PWD,                       xx, xx, QK_MOUSE_CURSOR_UP, xx, xx,

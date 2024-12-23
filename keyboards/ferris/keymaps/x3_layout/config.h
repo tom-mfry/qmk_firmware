@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #pragma once
+
 // Set the mouse settings to a comfortable speed/accuracy trade-off,
 // assuming a screen refresh rate of 60 Htz or higher
 // The default is 50. This makes the mouse ~3 times faster and more accurate
@@ -33,12 +34,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 100
 
 #define EE_HANDS
-#define COMBO_COUNT 10
+#define COMBO_COUNT 12
 
 // Pick good defaults for enabling homerow modifiers
 #define TAPPING_TERM 300
-#define PERMISSIVE_HOLD
-#define QUICK_TAP_TERM 0
-
-#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 #define TAPPING_TOGGLE 2
