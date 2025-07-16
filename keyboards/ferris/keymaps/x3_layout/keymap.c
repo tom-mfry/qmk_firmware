@@ -93,14 +93,14 @@ CHORDING
  ├────────┼────────┼────────┼────────┼────────┤       ├─────----───┼────────┼────────┼────────┼────────┤
  │   Z    │   X    │   C    │   V    │   B    │       │   N        │   M    │   ,    │   .    │  NUM   │
  └────────┴────────┴────────┼────────┼────────┤       ├──────----──┼────────┤────────┴────────┴────────┘
-                            │  SYMB  │  BKSPC │       │   SPACE    │  NAV   │
+                            │  SYMB  │  SPACE │       │   BACKS    │  NAV   │
                             └────────┴────────┘       └─────----───┴────────┘
 
   NAV LAYER
  ┌────────┬────────┬────────┬────────┬────────┐       ┌────────┬────────┬────────┬────────┬────────┐
- │  ESC   │  CSG   │  CAG   │  DEL   │ BKSPC  │       │  END   │ PG_DWN │ PG_UP  │  HOME  │  CAPS  │
+ │  ESC   │  CSG   │  CAG   │  DEL   │  TAB   │       │  END   │ PG_DWN │ PG_UP  │  HOME  │ CAPSW  │
  ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
- │  LSFT  │  LCTL  │  LALT  │  LGUI  │  TAB   │       │   ←    │   ↓    │   ↑    │   →    │ CAPSW  │
+ │  LSFT  │  LCTL  │  LALT  │  LGUI  │  TAB   │       │   ←    │   ↓    │   ↑    │   →    │   :    │
  ├────────┼────────┼────────┼────────┼────────┤       ├────────┼────────┼────────┼────────┼────────┤
  │        │  CUT   │  COPY  │ PASTE  │  FIND  │       │   <    │   -    │   +    │   >    │        │
  └────────┴────────┴────────┼────────┼────────┤       ├────────┼────────┤────────┴────────┴────────┘
@@ -149,11 +149,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
           KC_A,    KC_S,    KC_D,    KC_F,    KC_G,            KC_H,    KC_J,    KC_K,    KC_L,    KC_LGUI,
           KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,            KC_N,    KC_M,    KC_COMM, KC_DOT,  MO(_NUM),
-                                  MO(_SYM), KC_BSPC,            KC_SPC, MO(_NAV)),
+                                  MO(_SYM), KC_SPC,            KC_BSPC, MO(_NAV)),
 
         [_NAV] = LAYOUT_split_3x5_2(
-          KC_ESC, OSM(MOD_LCTL|MOD_LSFT|MOD_LGUI), OSM(MOD_LCTL|MOD_LALT|MOD_LGUI), KC_DEL, KC_BSPC, KC_END, KC_PGDN, KC_PGUP, KC_HOME, KC_CAPS,
-          OSM(MOD_LSFT), OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LGUI), KC_TAB, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, QK_CAPS_WORD_TOGGLE,
+          KC_ESC, OSM(MOD_LCTL|MOD_LSFT|MOD_LGUI), OSM(MOD_LCTL|MOD_LALT|MOD_LGUI), KC_DEL, KC_TAB, KC_END, KC_PGDN, KC_PGUP, KC_HOME, QK_CAPS_WORD_TOGGLE,
+          OSM(MOD_LSFT), OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LGUI), KC_TAB, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_COLN,
           xx, LGUI(KC_X), LGUI(KC_C), LGUI(KC_V), LGUI(KC_F), KC_COMM, KC_MINS, KC_EQL, KC_DOT, xx,
           xx, KC_ENT, TO(_BASE), xx),
 
